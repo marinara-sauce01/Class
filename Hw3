@@ -1,1 +1,58 @@
+#include <iostream>
+#include <sstream>
+//#include "hw3functions.h"
+using namespace std;
 
+int main(){
+
+    return 0;
+}
+
+void ShowMenu(){
+    cout << "Program Start" << endl;
+    cout << "A. addition" << endl;
+    cout << "S. subtraction" << endl;
+    cout << "Q. exit" << endl;
+    cout << "What do you want?" << endl;
+}
+
+void getRational(int *num, int *den){
+    string numstr, denstr, str = "\0"; //initializes num/den/str strings
+    cout << "Please input a fraction (n/d): "; //asks for fraction input
+    getline(cin, str); // gets string input from user
+    stringstream stream1(str);
+    getline(stream1, numstr, '/'); //gets numerator from string stream
+    getline(stream1, denstr, '/'); //gets denominator from string stream
+    *num = stoi(numstr); //points to num integer
+    *den = stoi(denstr); //points to den integer
+    if(*den==0){
+        cout << "Invalid denominator, can't divide by zero" << endl; //stops division by 0
+    }
+}
+
+void add(int anum, int aden, int num1, int den1, int num2, int den2){
+    system("cls"); //clears screen
+    num1, num2, den1, den2, anum, aden = 0;
+    while(true){
+        cout << "Addition of rational numbers" << endl;
+        getRational(&num1, &den1); //gets integer values from num1/den1
+        getRational(&num2, &den2);
+        cout << "The result of " << displayRational(num1, den1) << " + " << displayRational(num2, den2) 
+            << "is: " << reduce(anum, aden); // calls displayResult & reduce functions
+        char user = '\0';
+        cout << "Do you want to do more additions? (Y/N): "; //asks user for more additions
+        cin >> user;
+        cin.ignore();
+        if (user == 'N'){ //if no, stops program
+            break;
+        }
+    }
+}
+
+void subtract(int anum, int aden, int num1, int den1, int num2, int den2){
+    system("cls");
+}
+
+void displayResult(int num, int den){
+    
+}
