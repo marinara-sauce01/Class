@@ -2,7 +2,12 @@
 #include <sstream>
 //#include "hw3functions.h"
 using namespace std;
-
+void ShowMenu();
+void getRational (int*, int*);
+void add (int, int, int, int, int, int);
+void subtract (int, int, int, int, int, int);
+void displayRational (int, int);
+void reduce (int, int);
 int main(){
 
     return 0;
@@ -17,6 +22,7 @@ void ShowMenu(){
 }
 
 void getRational(int *num, int *den){
+    bool prime = true;
     string numstr, denstr, str = "\0"; //initializes num/den/str strings
     cout << "Please input a fraction (n/d): "; //asks for fraction input
     getline(cin, str); // gets string input from user
@@ -25,20 +31,25 @@ void getRational(int *num, int *den){
     getline(stream1, denstr, '/'); //gets denominator from string stream
     *num = stoi(numstr); //points to num integer
     *den = stoi(denstr); //points to den integer
-    if(*den==0){
-        cout << "Invalid denominator, can't divide by zero" << endl; //stops division by 0
+    while(prime == true){
+        if (*den==0){
+            cout << "Invalid denominator, can't divide by zero" << endl; //stops division by 0
+            prime = false;
+        }
     }
 }
 
 void add(int anum, int aden, int num1, int den1, int num2, int den2){
     system("cls"); //clears screen
-    num1, num2, den1, den2, anum, aden = 0;
+//    num1, num2, den1, den2, anum, aden = 0;
     while(true){
         cout << "Addition of rational numbers" << endl;
         getRational(&num1, &den1); //gets integer values from num1/den1
         getRational(&num2, &den2);
-        cout << "The result of " << displayRational(num1, den1) << " + " << displayRational(num2, den2) 
-            << "is: " << reduce(anum, aden); // calls displayResult & reduce functions
+        cout << "The result of "; displayRational(num1, den1); // calls displayResult
+        cout << " + "; displayRational(num2, den2); // calls displayResult
+        //must include definition for anum/aden here
+        cout << "is: "; reduce(anum, aden); // calls reduce functions
         char user = '\0';
         cout << "Do you want to do more additions? (Y/N): "; //asks user for more additions
         cin >> user;
@@ -49,10 +60,49 @@ void add(int anum, int aden, int num1, int den1, int num2, int den2){
     }
 }
 
-void subtract(int anum, int aden, int num1, int den1, int num2, int den2){
+void subtract(int snum, int sden, int num1, int den1, int num2, int den2){
     system("cls");
+//    int num1, num2, den1, den2, anum, aden = 0;
+    while(true){
+        cout << "Subtraction of rational numbers" << endl;
+        getRational(&num1, &den1); //gets integer values from num1/den1
+        getRational(&num2, &den2);
+        cout << "The result of "; displayRational(num1, den1); // calls displayResult
+        cout << " - "; displayRational(num2, den2); // calls displayResult
+        //must include definition for snum/sden here
+        cout << "is: "; reduce(snum, sden); // calls reduce functions
+        char user = '\0';
+        cout << "Do you want to do more subtractions? (Y/N): "; //asks user for more subtractions
+        cin >> user;
+        cin.ignore();
+        if (user == 'N'){ //if no, stops program
+            break;
+        }
+    }
 }
 
-void displayResult(int num, int den){
-    
+void displayRational(int num, int den){
+    if (den = num){
+        cout << num;
+    }
+    else{
+        cout << num << "/" << den;
+    }
+}
+
+void reduce(int num, int den){
+    int rem = num/den; //initialize remainder integer
+    int gcf = 0; // greatest common factor
+    while (rem != 0){ //euclid's algorithm 
+        num = den;
+        den = rem;
+        rem = num/den;
+        if (rem == 0)
+        {
+            gcf = den;
+        }
+        num = num/gcf;
+        den = den/gcf;
+    }
+    cout << num << "/" << den;
 }
