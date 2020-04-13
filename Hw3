@@ -1,17 +1,13 @@
 #include <iostream>
 #include <sstream>
-//#include "hw3functions.h"
 using namespace std;
+
 void ShowMenu();
 void getRational (int*, int*);
 void add (int, int, int, int, int, int);
 void subtract (int, int, int, int, int, int);
 void displayRational (int, int);
 void reduce (int, int);
-int main(){
-
-    return 0;
-}
 
 void ShowMenu(){
     cout << "Program Start" << endl;
@@ -25,12 +21,14 @@ void getRational(int *num, int *den){
     bool prime = true;
     string numstr, denstr, str = "\0"; //initializes num/den/str strings
     cout << "Please input a fraction (n/d): "; //asks for fraction input
-    getline(cin, str); // gets string input from user
+    getline(cin, str); // gets string input from user, THIS PART isn't working, PROGRAM IS IGNORING MY INPUT
     stringstream stream1(str);
     getline(stream1, numstr, '/'); //gets numerator from string stream
     getline(stream1, denstr, '/'); //gets denominator from string stream
     *num = stoi(numstr); //points to num integer
     *den = stoi(denstr); //points to den integer
+    cout << numstr << endl;
+    cout << denstr << endl;
     while(prime == true){
         if (*den==0){
             cout << "Invalid denominator, can't divide by zero" << endl; //stops division by 0
@@ -41,14 +39,15 @@ void getRational(int *num, int *den){
 
 void add(int anum, int aden, int num1, int den1, int num2, int den2){
     system("cls"); //clears screen
-//    num1, num2, den1, den2, anum, aden = 0;
+    num1, num2, den1, den2, anum, aden = 0;
     while(true){
         cout << "Addition of rational numbers" << endl;
         getRational(&num1, &den1); //gets integer values from num1/den1
         getRational(&num2, &den2);
         cout << "The result of "; displayRational(num1, den1); // calls displayResult
         cout << " + "; displayRational(num2, den2); // calls displayResult
-        //must include definition for anum/aden here
+        anum = (num1 * den2) + (num2 * den1); //must include definition for anum/aden here
+        aden = (den1 * den2); 
         cout << "is: "; reduce(anum, aden); // calls reduce functions
         char user = '\0';
         cout << "Do you want to do more additions? (Y/N): "; //asks user for more additions
@@ -62,14 +61,15 @@ void add(int anum, int aden, int num1, int den1, int num2, int den2){
 
 void subtract(int snum, int sden, int num1, int den1, int num2, int den2){
     system("cls");
-//    int num1, num2, den1, den2, anum, aden = 0;
+    num1, num2, den1, den2, snum, sden = 0;
     while(true){
         cout << "Subtraction of rational numbers" << endl;
         getRational(&num1, &den1); //gets integer values from num1/den1
         getRational(&num2, &den2);
         cout << "The result of "; displayRational(num1, den1); // calls displayResult
         cout << " - "; displayRational(num2, den2); // calls displayResult
-        //must include definition for snum/sden here
+        snum = (num1 * den2) - (num2 * den1); //must include definition for snum/sden here
+        sden = (den1 * den2); 
         cout << "is: "; reduce(snum, sden); // calls reduce functions
         char user = '\0';
         cout << "Do you want to do more subtractions? (Y/N): "; //asks user for more subtractions
