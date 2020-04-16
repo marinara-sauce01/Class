@@ -1,0 +1,34 @@
+//******************************************************************************
+// Team # 20 CSCI/CMPE 1370 Spring2020 Homework # 3
+// Emilio Saenz
+// Mariana Saenz
+// The following program performs addition and subtraction of fractions and
+// reduces them to the simplest form.
+//******************************************************************************
+
+#include <iostream>
+#include <sstream>
+#include "hw3functions.h"
+using namespace std;
+
+int main(){
+    char user = '\0';
+    while (true){
+        ShowMenu();
+        cin >> user;
+        cin.ignore();
+        int c = 0;
+        if (user == 'A'){
+            add();
+        }
+        else if(user == 'S'){
+            subtract();
+        }
+        else{
+            cout << "Thank you, exiting program";
+            break;
+        }
+        
+    }
+    return 0;
+}
