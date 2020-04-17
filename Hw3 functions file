@@ -20,7 +20,7 @@ void reduce (int&, int&);
 int gcf(int, int);
 
 void ShowMenu(){
-    cout << "Program Start" << endl;
+    cout << "\nProgram Start" << endl;
     cout << "A. addition" << endl;
     cout << "S. subtraction" << endl;
     cout << "Q. exit" << endl;
@@ -43,16 +43,16 @@ void getRational(int& num, int& den){
         prime = false; break;
         }
         else{
-            prime = false; continue;
+            prime = false; 
         }
     }
 }
 
 void add(){
-    system("cls"); //clears screen
+    system("clear"); //clears screen
     bool prime = true;
     int num1, num2, den1, den2, anum, aden = 0;
-    while(prime = true){
+    while(prime == true){
         char user = '\0';
         cout << "Addition of rational numbers" << endl;
         getRational(num1, den1); //gets integer values from num1/den1
@@ -64,23 +64,22 @@ void add(){
         cout << " is: "; 
         if (aden == 0){
             cout << "Cannot divide by zero" << endl; 
-            prime = false; break;
+            prime = false; 
+            break;
         }
-        else{
-            prime = false; continue;
-        }
-        reduce(anum, aden); cout << endl;// calls reduce function
-        cout << "Do you want to do more additions? (Y/N): "; //asks user for more additions
+        reduce(anum, aden);
+        displayRational(anum, aden);
+        cout << "\nDo you want to do more additions? (Y/N): "; //asks user for more additions
         cin >> user;
         cin.ignore();
-        if (user == 'N'){ //if no, stops program
+        if ((user == 'N')||(user=='n')){ //if no, stops program
             break;
         }
     }
 }
 
 void subtract(){
-    system("cls");
+    system("clear");
     bool prime = true;
     int num1, num2, den1, den2, snum, sden = 0;
     while(true){
@@ -97,14 +96,12 @@ void subtract(){
             cout << "Cannot divide by zero" << endl; 
             prime = false; break;
         }
-        else{
-            prime = false; continue;
-        }
-        reduce(snum, sden); cout << endl;// calls reduce function
-        cout << "Do you want to do more subtractions? (Y/N): "; //asks user for more subtractions
+        reduce(snum, sden);
+        displayRational(snum, sden);
+        cout << "\nDo you want to do more subtractions? (Y/N): "; //asks user for more subtractions
         cin >> user;
         cin.ignore();
-        if (user == 'N'){ //if no, stops program
+        if ((user == 'N')||(user=='n')){ //if no, stops program
             break;
         }
     }
@@ -112,7 +109,13 @@ void subtract(){
 
 void displayRational(int &num, int &den){
     if (den == num){
+        cout << 1;
+    }
+    else if (den == 1){
         cout << num;
+    }
+    else if(num == 0){
+        cout << 0;
     }
     else{
         cout << num << "/" << den;
@@ -121,44 +124,10 @@ void displayRational(int &num, int &den){
 
 void reduce(int &num, int &den){
     int rem = num%den; //initialize remainder integer
-//    cout << "gcf is " << gcf(num, den) << endl; 
     int rednum = num/gcf(num, den);
     int redden = den/gcf(num, den);
-    if (redden == 1){    
-        cout << rednum << endl;
-    }
-    else{
-        cout << rednum << "/" << redden << endl;
-    }
-/*        cout << endl;
-        cout << "num " << num << endl;
-        cout << "den " << den << endl;
-        cout << "rem " << rem << endl;
-        cout << "gcf " << gcf << endl;
-    while (rem != 0){ //euclid's algorithm 
-        num = den;
-        den = rem;
-        rem = num/den;
-        cout << "numw " << num << endl;
-        cout << "denw " << den << endl;
-        cout << "remw " << rem << endl;
-        cout << "gcfw " << gcf << endl;
-        if (rem == 0){
-            gcf = den;
-            num = (num/gcf);
-            den = (den/gcf);
-            
-            cout << num << " reduced1 " << den; cout << endl;    
-        }
-        cout << "numw2 " << num << endl;
-        cout << "denw2 " << den << endl;
-        cout << "remw2 " << rem << endl;
-        cout << "gcfw2 " << gcf << endl;
-
-        
-        cout << num << " reduced2 " << den; cout << endl;
-    }*/
-    
+    num = rednum;
+    den = redden;
 }
 
 int gcf(int num, int den) 
