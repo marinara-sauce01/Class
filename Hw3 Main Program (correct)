@@ -18,14 +18,18 @@ int main(){
         cin >> user;
         cin.ignore();
         int c = 0;
-        if (user == 'A'){
+        if ((user == 'A')||(user=='a')){
             add();
         }
-        else if(user == 'S'){
+        else if((user == 'S')||(user=='s')){
             subtract();
         }
-        else{
+        else if((user == 'Q')||(user == 'q')){
             cout << "Thank you, exiting program";
+            break;
+        }
+        else{
+            cout<< "Invalid Entry \n";
             break;
         }
         
