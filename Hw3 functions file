@@ -43,7 +43,7 @@ void getRational(int& num, int& den){
         prime = false; break;
         }
         else{
-            prime = false; continue;
+            prime = false; 
         }
     }
 }
@@ -66,9 +66,6 @@ void add(){
             cout << "Cannot divide by zero" << endl; 
             prime = false; 
             break;
-        }
-        else{
-            prime = false;
         }
         displayRational(anum, aden);
         cout << "\nDo you want to do more additions? (Y/N): "; //asks user for more additions
@@ -97,9 +94,6 @@ void subtract(){
                 if (sden == 0){
             cout << "Cannot divide by zero" << endl; 
             prime = false; break;
-        }
-        else{
-            prime = false;
         }
         displayRational(snum, sden);
         cout << "\nDo you want to do more subtractions? (Y/N): "; //asks user for more subtractions
